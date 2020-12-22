@@ -1,0 +1,49 @@
+html{
+    background:#444;
+  }
+  
+  p{
+    text-align:center;
+    color:#FFF;
+  }
+  
+  #wrapper {
+    width:250px;
+    height:450px;
+    margin:20px auto;
+    border:1px solid #333;
+    background:#CCC;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    cursor:pointer;
+  }
+  
+  #circle{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#01a9f4;
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    z-index:2;
+    pointer-events:none;
+  }
+  
+  #whiteBox,
+  #whiteBoxBase{
+    background:#FFF;
+    height:100px;
+    width:100%;
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    z-index:1;
+    pointer-events:none;
+  }
+  
+  #whiteBox{
+    height:190px;
+    z-index:3;
+  }
