@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimelineLite, Back, Power4, TweenMax } from 'gsap';
 import { TimelineMax } from 'gsap';
 import * as $ from "jquery";
-
+import anime from 'animejs/lib/anime.es.js';
 // or
 
 
@@ -17,42 +17,76 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
     this.main();
+    this.main2();
   }
 
   main() {
-    document.addEventListener("DOMContentLoaded", function(event) {
-  
-      window.onload = function(){
-    
-    var tl = new TimelineMax({paused:true});//,
-        //$circle = document.getElementById("circle"),
-        //$whiteBox = document.getElementById("whiteBox");
-    
-    TweenMax.set("#whiteBox",{y:190,force3D:true});
-    
-    tl.to("#circle",0.8,{x:90,y:-210,rotation:0.01,force3D:true}, 0);
-    tl.to("#circle",0.8,{scale:15,rotation:0.01,force3D:true}, 0.13);
-    tl.to("#whiteBox",0.6,{y:0,rotation:0.01,force3D:true}, 0);
-    tl.progress(1).progress(0);
-    
-    
-    // click event
-    var cl = false;
-    $(document).on("click", "#wrapper", function(){
-      if(cl == false){
-        tl.play();
-        cl = true;
-      } else if(cl == true){
-        tl.reverse();
-        cl = false;
-      } 
-      return false;
-    });
-        
-      };
-      
-    });
+    var pathEls = document.querySelectorAll('path');
+    for (var i = 0; i < pathEls.length; i++) {
+      var pathEl = pathEls[i];
+      var offset = anime.setDashoffset(pathEl);
+      pathEl.setAttribute('stroke-dashoffset', offset);
+      anime({
+        targets: pathEl,
+        strokeDashoffset: [offset, 0],
+        duration: anime.random(1000, 3000),
+        delay: anime.random(0, 2000),
+        loop: true,
+        direction: 'alternate',
+        easing: 'easeInOutSine',
+        autoplay: true
+      });
+    }
 
   }
-
+  main2(){
+    var bounceIn = anime({
+      targets: '.letter__part',
+      translateY: {
+            value: [-30, 0],
+            duration: 900,
+            delay: 1000,
+            elasticity: 600,
+            easing: 'easeOutElastic'
+          },
+          opacity: {
+            value: [0, 1],
+            duration: 300,
+            easing: 'linear',
+            delay: 1000
+          }
+      });
+    
+    var lineDrawing = anime({
+      targets: '.color-1',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeOutElastic',
+      duration: 4000,
+      delay: 1000,
+      loop: false,
+      direction: 'alternate',
+    });
+    
+    var lineDrawing = anime({
+      targets: '.color-3',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeOutElastic',
+      duration: 4000,
+      delay: 1200,
+      loop: false,
+      direction: 'alternate',
+    });
+    
+    var lineDrawing = anime({
+      targets: '.color-2',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeOutElastic',
+      duration: 4000,
+      delay: 1400,
+      loop: false,
+      direction: 'alternate',
+    });
+    
+    
+  }
 }

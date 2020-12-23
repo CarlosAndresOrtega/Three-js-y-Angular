@@ -9,6 +9,8 @@ import { RenderComponent } from './render/render.component';
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'render', component: RenderComponent },
+  { path: '', component: InicioComponent },
+  { path: '**', redirectTo: '/' },
   
 ];
 
