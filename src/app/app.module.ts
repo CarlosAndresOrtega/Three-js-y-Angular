@@ -8,13 +8,17 @@ import { InicioComponent } from './inicio/inicio.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule} from './app-routing.module';
 import { routingComponents} from './app-routing.module';
+import { TextosComponent } from './textos/textos.component';
+import { AnimacionComponent } from './animacion/animacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     // RenderComponent,
     // InicioComponent
-    routingComponents
+    routingComponents,
+    TextosComponent,
+    AnimacionComponent
   ],
   imports: [
     BrowserModule,

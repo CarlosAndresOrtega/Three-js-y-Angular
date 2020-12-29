@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TimelineLite, Back, Power4, TweenMax } from 'gsap';
 import { TimelineMax } from 'gsap';
 import * as $ from "jquery";
@@ -13,7 +14,7 @@ import anime from 'animejs/lib/anime.es.js';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.main();
@@ -39,6 +40,9 @@ export class InicioComponent implements OnInit {
     }
 
   }
+  render(){
+    this.router.navigate(['/render']);
+  }
   main2(){
     var bounceIn = anime({
       targets: '.letter__part',
@@ -56,7 +60,7 @@ export class InicioComponent implements OnInit {
             delay: 1000
           }
       });
-    
+        
     var lineDrawing = anime({
       targets: '.color-1',
       strokeDashoffset: [anime.setDashoffset, 0],
