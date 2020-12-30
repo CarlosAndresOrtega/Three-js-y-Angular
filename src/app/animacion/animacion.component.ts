@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import anime from 'animejs/lib/anime.es.js';
+import * as Matter from 'matter-js'
 
 @Component({
   selector: 'app-animacion',
@@ -15,45 +16,29 @@ export class AnimacionComponent implements OnInit {
   }
 
   movimiento() {
-    // Amimacion 1
-    // anime({
-    //   targets: '#caja',
-    //   translateX: 250,
-    //   rotateZ: 360,
-    //   scale: 3,
-    //   duration: 3000,
-    //   loop:true,
-    // })
-    // Animacion 2
-    // anime({
-    //   targets: '#caja',
-    //   keyframes: [
-    //     {translateX: 250, scale: 2},
-    //     {translateY: 50, scale: 4},
-    //     {translateX: 550, scale: 1},
-    //     {translateX: 450, scale: 3},
-    //   ],
-    //   rotateZ: 360,
-    //   // scale: 3,
-    //   duration: 3000,
-    //   loop:true,
-    // })
-    // Animacion 3
-    // anime({
-    //   targets: '.epa',
-    //   translateX: anime.stagger(150),
-    //   delay: anime.stagger(500,{from: 'last'}),
-    //   duration:3000,
-    //   loop: true
-    // })
-    //Animacion 4
-    anime({
-      targets: '.epa',
-      translateX: anime.stagger(10, {grid: [14, 5], from: 'center', axis: 'x'}),
-      translateY: anime.stagger(10, {grid: [14, 5], from: 'center', axis: 'y'}),
-      rotateZ: anime.stagger([0, 90], {grid: [14, 5], from: 'center', axis: 'x'}),
-      delay: anime.stagger(200, {grid: [14, 5], from: 'center'}),
-      easing: 'easeInOutQuad'
+    let engine = Matter.Engine.create();
+    let render = Matter.Render.create({
+      element: document.querySelector("#matter"),
+      engine: engine,
+      
     });
+    let ground = Matter.Bodies.rectangle(400, 600, 810, 60, { isStatic: true });
+    let boxA = Matter.Bodies.rectangle(400, 200, 80, 80);
+    let boxB = Matter.Bodies.rectangle(450, 50, 80, 80);
+
+    // let mouse = Matter.Mouse.create(render.canvas);
+    // let mouseConstraint = Matter.MouseConstraint.create(engine, {
+    //   mouse: mouse,
+    //   constraint: {
+    //     render: { visible: true }
+    //   }
+    // });
+    // render.mouse = mouse;
+
+    // Matter.World.add(engine.world, [boxA, boxB, ground, mouseConstraint]);
+    Matter.World.add(engine.world, [boxA, boxB, ground, ]);
+
+    Matter.Engine.run(engine);
+    Matter.Render.run(render)
   }
 }
