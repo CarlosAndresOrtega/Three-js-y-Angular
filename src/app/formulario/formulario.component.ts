@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import {AngularFireDatabase} from 'angularfire2/database';
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -19,7 +21,15 @@ export class FormularioComponent implements OnInit {
     vpassword: new FormControl('',Validators.compose([Validators.minLength(6),Validators.required])),
   });
 
-  constructor() { }
+  datos: any [];
+
+  constructor( db: AngularFireDatabase) {
+    db.list('/Animes').snapshotChanges().subscribe( dato=>{
+      this.datos=dato;
+      console.log(dato);
+      
+    });
+   }
 
   ngOnInit(): void {
   }

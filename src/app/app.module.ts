@@ -12,6 +12,11 @@ import { TextosComponent } from './textos/textos.component';
 import { AnimacionComponent } from './animacion/animacion.component';
 import { FormularioComponent } from './formulario/formulario.component';
 
+//Firebase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,9 @@ import { FormularioComponent } from './formulario/formulario.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
     
   ],
   providers: [],
